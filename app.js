@@ -1,3 +1,5 @@
+alert("JS carregou");
+
 window.onload = () => {
 
 const chatInput = document.getElementById("chatInput");
