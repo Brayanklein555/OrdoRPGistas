@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Ordo RPGistas</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"></script>
+
+</head>
+
+<body class="ordem">
+
+<div id="particles"></div>
+
+<header>
+  <h1 class="logo">✦ ORDO RPGISTAS ✦</h1>
+
+  <div>
+    <input id="username" placeholder="Seu nome">
+    <input id="room" placeholder="Sala ID">
+    <button onclick="joinRoom()">Entrar</button>
+    <button onclick="toggleTheme()">Tema</button>
+  </div>
+</header>
+
+<main>
+
+<div id="mapArea">
+  <input type="file" id="mapUpload">
+
+  <canvas id="mapCanvas"></canvas>
+</div>
+
+</main>
+
+<aside id="chat">
+  <div id="chatLog"></div>
+  <input id="chatInput" placeholder="Mensagem..." onkeydown="sendMsg(event)">
+</aside>
+
+<script src="firebase.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
