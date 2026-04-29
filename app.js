@@ -1,3 +1,11 @@
+window.onload = () => {
+
+const chatInput = document.getElementById("chatInput");
+const chatLog = document.getElementById("chatLog");
+const mapUpload = document.getElementById("mapUpload");
+const canvas = document.getElementById("mapCanvas");
+const ctx = canvas.getContext("2d");
+
 let room = "";
 let user = "";
 let tokens = [];
@@ -5,9 +13,15 @@ let mapImg = null;
 
 /* ENTRAR NA SALA */
 function joinRoom() {
-  room = document.getElementById("room").value;
-  user = document.getElementById("username").value;
+  room = document.getElementById("room").value.trim();
+  user = document.getElementById("username").value.trim();
 
+  if (!room || !user) {
+    alert("Preencha nome e sala!");
+    return;
+  }
+
+  chatLog.innerHTML = ""; // limpa chat ao entrar
   listenData();
 }
 
@@ -20,6 +34,9 @@ function toggleTheme() {
 /* CHAT */
 function sendMsg(e) {
   if (e.key === "Enter") {
+
+    if (!room) return alert("Entre em uma sala primeiro!");
+
     let text = chatInput.value;
 
     db.ref(`rooms/${room}/chat`).push({
@@ -31,7 +48,12 @@ function sendMsg(e) {
   }
 }
 
+/* ESCUTA DADOS */
 function listenData() {
+
+  db.ref(`rooms/${room}/chat`).off(); // evita duplicação
+  db.ref(`rooms/${room}/tokens`).off();
+
   db.ref(`rooms/${room}/chat`).on("child_added", snap => {
     let msg = snap.val();
 
@@ -47,9 +69,6 @@ function listenData() {
 }
 
 /* MAPA */
-let canvas = document.getElementById("mapCanvas");
-let ctx = canvas.getContext("2d");
-
 mapUpload.onchange = e => {
   let img = new Image();
   img.src = URL.createObjectURL(e.target.files[0]);
@@ -62,7 +81,10 @@ mapUpload.onchange = e => {
   };
 };
 
+/* DESENHO */
 function draw() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
   if (mapImg) ctx.drawImage(mapImg,0,0);
 
   tokens.forEach(t => {
@@ -75,6 +97,9 @@ function draw() {
 
 /* TOKENS */
 canvas.onclick = e => {
+
+  if (!room) return alert("Entre em uma sala!");
+
   let rect = canvas.getBoundingClientRect();
 
   let x = e.clientX - rect.left;
@@ -115,7 +140,10 @@ canvas.onmousemove = e => {
 
   let dist = Math.sqrt((x-start.x)**2 + (y-start.y)**2);
 
+  ctx.fillStyle = "white";
   ctx.fillText((dist/40).toFixed(1)+"m", x, y);
 };
 
 canvas.onmouseup = () => measuring = false;
+
+};
