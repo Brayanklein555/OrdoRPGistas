@@ -1,11 +1,46 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OrdoRpgistas</title>
+    <title>OrdoRpgistas - Novo Agente</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Bem-vindo a ficha online</h1>
+    <!-- NAVBAR -->
+    <header>
+      <div class="logo">C.R.I.S</div>
+
+      <nav>
+        <button>Novo Agente</button>
+        <button>Fichas</button>
+      </nav>
+    </header>
+
+    <!-- TÍTULO -->
+    <section class="title">
+      <h1>NOVO <span>AGENTE</span></h1>
+      <p class="status">● Sistema C.R.I.S. conectado</p>
+    </section>
+
+    <!-- CARDS -->
+    <section class="cards">
+      <div class="card" data-type="ordem">
+        <div class="icon">🛡️</div>
+        <h2>AGENTE DA ORDEM</h2>
+        <p>Recruta (NEX 5%). Treinado para enfrentar o paranormal.</p>
+      </div>
+
+      <div class="card" data-type="sobrevivente">
+        <div class="icon">🩸</div>
+        <h2>SOBREVIVENTE</h2>
+        <p>Civil (NEX 0%). Uma pessoa comum arrastada para o horror.</p>
+      </div>
+    </section>
+
+    <nav>
+      <button id="nextBtn">proximo</button>
+    </nav>
+    <!--linkando o html e o js-->
+    <script src="script.js"></script>
   </body>
 </html>
