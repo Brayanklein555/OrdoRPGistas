@@ -1,0 +1,124 @@
+* {
+  margin: 10;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, black, darkred);
+  color: #ccc;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px;
+
+  opacity: 0.2;
+  pointer-events: none;
+
+  animation: moveParticles 20s linear infinite;
+}
+
+@keyframes moveParticles {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-200px);
+  }
+}
+
+.logo {
+  border-color: white;
+  color: red;
+  letter-spacing: 4px;
+}
+
+nav button {
+  background: transparent;
+  border: 1px solid #333;
+  color: #aaa;
+  padding: 8px 16px;
+  margin: 0 5px;
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+nav button:hover {
+  background-color: #00ff88;
+  color: #000;
+}
+
+.back {
+  background: none;
+  border: 1px solid #333;
+  padding: 8px 16px;
+  color: #aaa;
+}
+
+/* TITLE */
+.title {
+  padding: 40px;
+}
+.title h1 {
+  font-size: 40px;
+  letter-spacing: 2px;
+}
+
+.title span {
+  color: red;
+}
+
+.status {
+  margin-top: 10px;
+  color: #0f0;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  padding: 40px;
+}
+
+.card {
+  flex: 1;
+  border: 1px solid #333;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  border-color: #00ff88;
+}
+
+.card.selected {
+  border-color: #00ff88;
+  background: rgba(0, 255, 136, 0.1);
+}
+
+.icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  color: #ddd;
+}
+
+.card p {
+  color: #777;
+}
